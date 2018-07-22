@@ -4,9 +4,9 @@
 
 from flask import Flask, request, redirect, url_for
 
-from logs_analysis_db import (get_most_popular_articles,
-                              get_most_popular_article_authors,
-                              get_erroneous_requests_per_day_gt_a_percent)
+from logs_analysis_db import (most_popular_articles,
+                              most_popular_article_authors,
+                              erroneous_req_per_day_gt_a_percent)
 
 app = Flask(__name__)
 
@@ -61,7 +61,7 @@ MOST_POPULAR_ARTICLE_AUTHORS = '''\
 '''
 
 # HTML template for erroneous request > 1 percent
-erroneous_REQUESTS = '''\
+ERRONEOUS_REQUESTS = '''\
     <li>%s - %s%%</li>
 '''
 
@@ -71,15 +71,15 @@ def main():
     '''Main page of the logs analysis.'''
     articles = "".join(MOST_POPULAR_ARTICLES
                        % (title, views) for title, views
-                       in get_most_popular_articles())
+                       in most_popular_articles)
     authors = "".join(MOST_POPULAR_ARTICLE_AUTHORS
                       % (author_name, views) for author_name, views
-                      in get_most_popular_article_authors())
+                      in most_popular_article_authors)
     erroneous_requests = "".join(
-            erroneous_REQUESTS
+            ERRONEOUS_REQUESTS
             % (day.strftime("%b %d, %Y"), request_to_error_ratio)
             for day, request_to_error_ratio
-            in get_erroneous_requests_per_day_gt_a_percent())
+            in erroneous_req_per_day_gt_a_percent)
 
     html = HTML_WRAP % (articles, authors, erroneous_requests)
     return html

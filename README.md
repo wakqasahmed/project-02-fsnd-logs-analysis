@@ -28,7 +28,7 @@ More details can be found here:
 ### Step 1: Create the views
 - Enter the database using `psql news`
 - Run the following commands (ignore the warnings but make sure after it is run, it says **CREATE VIEW**):
-```
+```sql
 CREATE OR REPLACE VIEW most_popular_articles AS (
 	SELECT a.title, COUNT(l.*) AS views
 	FROM articles a, log l
