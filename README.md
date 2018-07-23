@@ -76,15 +76,13 @@ CREATE OR REPLACE VIEW erroneous_requests_per_day_more_than_a_percent AS (
 );
 
 ```
-- Now you can run the following queries to get the logs analysis:
-  1. What are the most popular three articles of all time? `SELECT * FROM most_popular_articles;`
-  2. Who are the most popular article authors of all time? `SELECT * FROM most_popular_article_authors;`
-  3. On which days did more than 1% of requests lead to errors? `SELECT * FROM erroneous_requests_per_day_more_than_a_percent;`
-
-### Step 2: Run the analysis (**BONUS**)
+### Step 2: Run the analysis
 - Run `logs_analysis.py` using the following command: `python logs_analysis.py`
+- Done - You should see logs analysis printed in terminal progressively
+
+### Step 3: Browse the analysis (**BONUS**)
 - Browse to `http://0.0.0.0:8000`
-- Done - You should see web browser displaying the logs analysis and HTTP request logging in terminal
+- Done - You should see web browser displaying the logs analysis and your HTTP request being logged in terminal
 
 # Technology Stack
 This website uses the following technologies:
